@@ -1,0 +1,72 @@
+id,input_type,content,label
+1,text,"Ваш аккаунт заблокирован. Срочно перейдите по ссылке и подтвердите данные.",phish
+2,text,"Поздравляем! Вы выиграли iPhone 15. Чтобы получить приз, оплатите доставку по ссылке ниже.",phish
+3,text,"Ваш банковский счёт будет закрыт через 24 часа. Нажмите здесь для обновления реквизитов.",phish
+4,text,"Пополни баланс и получи х2 прямо сейчас. Акция действует 10 минут.",phish
+5,text,"Это техподдержка школы. Срочно пришлите код из SMS, иначе аккаунт удалят.",phish
+6,text,"Ваша карта заблокирована. Чтобы возобновить работу, заполните форму.",phish
+7,text,"Нам необходимо подтвердить вашу личность. Отправьте фото паспорта сюда.",phish
+8,text,"Ваш компьютер заражён. Установите этот файл, чтобы удалить вирус.",phish
+9,text,"Я случайно отправил вам деньги. Можете вернуть? Вот ссылка.",phish
+10,text,"Срочно! Ваш родственник попал в беду. Нужны деньги прямо сейчас. Не звоните никому.",phish
+
+11,text,"Здравствуйте! Напоминаем, что родительское собрание состоится в 17:00 в кабинете 205.",safe
+12,text,"Ваш заказ доставлен. Курьер подъедет в течение 15 минут.",safe
+13,text,"Домашнее задание: решить задачи 1–5 из учебника по алгебре.",safe
+14,text,"Поздравляем! Вы записаны на олимпиаду. Придите в кабинет 301 в пятницу.",safe
+15,text,"Ваши баллы ЕНТ обновлены. Посмотреть можно в личном кабинете.",safe
+16,text,"Уроки перенесены на вторник по причине ремонта.",safe
+17,text,"Учитель загрузил новый материал. Проверьте Google Classroom.",safe
+18,text,"Ваше заявление принято. Ответ будет отправлен в течение 3 дней.",safe
+19,text,"Спасибо за участие в конкурсе школьных проектов.",safe
+20,text,"Платёж успешно выполнен. Детали доступны в приложении банка.",safe
+
+21,url,"http://secure-login-google.com/auth",phish
+22,url,"https://instagram-support-help-center.com",phish
+23,url,"http://bank-kazakhstan-verify.info",phish
+24,url,"https://giveaway-iphone15-free.net",phish
+25,url,"http://steam-free-skins.ru/login",phish
+26,url,"https://facebook.recovery-id-284892.com",phish
+27,url,"http://alfa-bank.support-verification.net",phish
+28,url,"https://whatsapp-safety-check.info",phish
+29,url,"http://kaspi-kabinet.kz.login-secure.net",phish
+30,url,"http://paypal-confirmation-account.org",phish
+31,url,"https://epayment-kz-security-check.info",phish
+32,url,"http://school-edu-security-check.net",phish
+33,url,"http://bonus30000.kz-promo-gift.com",phish
+34,url,"https://emergency-help-family.org",phish
+35,url,"http://roblox-free-robux-generator.ru",phish
+
+36,url,"https://www.google.com",safe
+37,url,"https://kaspi.kz",safe
+38,url,"https://edu.kz",safe
+39,url,"https://classroom.google.com",safe
+40,url,"https://www.instagram.com",safe
+41,url,"https://drive.google.com",safe
+42,url,"https://youtube.com",safe
+43,url,"https://steamcommunity.com",safe
+44,url,"https://pay.kaspi.kz",safe
+45,url,"https://mail.google.com",safe
+46,url,"https://gov.kz",safe
+47,url,"https://whatsapp.com",safe
+48,url,"https://khanacademy.org",safe
+49,url,"https://epay.kkb.kz",safe
+50,url,"https://teams.microsoft.com",safe
+
+51,dialog,"— Привет, это я, у меня новый номер. — А? — Срочно скинь код из SMS, я не могу войти в аккаунт.",phish
+52,dialog,"— Мы из техподдержки Kaspi. — ?? — Чтобы продолжить работу, подтвердите логин по ссылке.",phish
+53,dialog,"— Ты участвуешь в розыгрыше. — В каком? — Просто перейди по ссылке и введи данные.",phish
+54,dialog,"— Твоя посылка не может быть доставлена. — Почему? — Нужно оплатить 300 тг для подтверждения адреса.",phish
+55,dialog,"— Ваш ребёнок нарушил правила школы. — Что? — Откройте вложение, там заявление директора.",phish
+
+56,file,"PDF: School_Fine_Notification.pdf — требует оплатить штраф и содержит фишинговую ссылку.",phish
+57,file,"DOCX: Kaspi_Account_Update.docx — просит ввести логин и пароль.",phish
+58,file,"IMG: fake_kaspi_activation.png — поддельный скрин активации Kaspi Gold.",phish
+59,file,"PDF: Parent_Alert.pdf — якобы уведомление от школы, внутри фишинговая ссылка.",phish
+60,file,"ZIP: Grades_Update.zip — внутри exe-файл, маскирующийся под обновление оценок.",phish
+
+61,file,"PDF: Расписание уроков за неделю.",safe
+62,file,"DOCX: Школьный отчёт по биологии.",safe
+63,file,"PDF: Уведомление о ремонте в школе.",safe
+64,file,"PNG: Фото домашнего задания.",safe
+65,file,"XLSX: Список участников олимпиады.",safe
