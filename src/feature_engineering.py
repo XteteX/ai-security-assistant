@@ -1,18 +1,26 @@
 import pandas as pd
-def extract_features(df):
+from sklearn.feature_extraction.text import TfidfVectorizer
+import re
+
+# TF-IDF векторизатор (будет обучаться на тренировочных данных)
+tfidf_vectorizer = TfidfVectorizer(
+    lowercase=True,
+    stop_words='english',
+    max_features=500  # можно увеличить позже
+)
+
+def clean_text(text: str) -> str:
+    """Простая очистка текста"""
+    text = text.lower()
+    text = re.sub(r"http\S+|www\S+", " url ", text)  # ссылки
+    text = re.sub(r"\S+@\S+", " email ", text)       # email
+    text = re.sub(r"[^a-z0-9\s]", " ", text)         # убрать спецсимволы
+    text = re.sub(r"\s+", " ", text)                 # убрать лишние пробелы
+    return text.strip()
+
+def extract_features(df: pd.DataFrame) -> pd.DataFrame:
+    """Возвращает матрицу признаков для модели"""
     df = df.copy()
-    
-    # Длина текста/URL
-    df['length'] = df['content'].apply(len)
-    
-    # Количество слов
-    df['word_count'] = df['content'].apply(lambda x: len(str(x).split()))
-    
-    # Количество ссылок
-    df['num_links'] = df['content'].apply(lambda x: str(x).count('http'))
-    
-    # Подозрительные слова
-    suspicious_words = ['urgent','verify','login','код','срочно']
-    df['suspicious_words'] = df['content'].apply(lambda x: sum(word in x.lower() for word in suspicious_words))
-    
-    return df[['length','word_count','num_links','suspicious_words']]
+    df['content_clean'] = df['content'].astype(str).apply(clean_text)
+    X = tfidf_vectorizer.fit_transform(df['content_clean'])
+    return X

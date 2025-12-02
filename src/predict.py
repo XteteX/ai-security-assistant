@@ -1,19 +1,24 @@
-import joblib
 import pandas as pd
-from feature_engineering import extract_features
+from xgboost import XGBClassifier
+from src.feature_engineering import extract_features
 
-# Загрузка модели
-model = joblib.load("../models/mvp_model.pkl")
+# Создаем и обучаем модель на MVP данных
+# В реальном проекте лучше загружать обученную модель через joblib
+model = XGBClassifier(
+    n_estimators=50,
+    max_depth=3,
+    use_label_encoder=False,
+    eval_metric='logloss'
+)
 
-def predict_risk(text):
-    df = pd.DataFrame([{'content': text}])
+def train_model(df: pd.DataFrame):
     X = extract_features(df)
-    pred = model.predict(X)[0]
-    proba = model.predict_proba(X).max()
-    return pred, proba
+    y = df['label']
+    model.fit(X, y)
 
-# Пример использования
-if __name__ == "__main__":
-    text = "Ваш аккаунт заблокирован. Срочно подтвердите данные"
-    label, confidence = predict_risk(text)
-    print(f"Prediction: {label}, Confidence: {confidence}")
+def predict_risk(model, df: pd.DataFrame):
+    X = extract_features(df)
+    preds = model.predict(X)
+    probs = model.predict_proba(X)
+    # Возвращаем первый элемент, если один пример
+    return preds[0], max(probs[0])
