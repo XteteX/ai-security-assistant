@@ -1,38 +1,44 @@
-import os
 import sys
-import pandas as pd
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 import joblib
-
-# === 1. Определяем путь к папке src ===
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))   # .../ai-security-assistant/src
-PROJECT_ROOT = os.path.abspath(os.path.join(CURRENT_DIR, ".."))   # .../ai-security-assistant
-
-SRC_DIR = os.path.join(PROJECT_ROOT, "src")
-
-# === 2. Добавляем src в sys.path ===
-if SRC_DIR not in sys.path:
-    sys.path.append(SRC_DIR)
-
-# === 3. Теперь импорт работает ===
+import pandas as pd
 from feature_engineering import extract_features
 
-# === 4. Путь к модели ===
-MODEL_PATH = os.path.join(PROJECT_ROOT, "models", "mvp_model.pkl")
+base_dir = r"C:\Users\Марлен\Documents\ai-security-assistant"
+model_path = os.path.join(base_dir, "models", "mvp_model.pkl")
+vectorizer_path = os.path.join(base_dir, "models", "vectorizer.pkl")
 
-if not os.path.exists(MODEL_PATH):
-    raise FileNotFoundError(f"Model not found at {MODEL_PATH}")
+# ПРИНУДИТЕЛЬНАЯ ПЕРЕЗАГРУЗКА при каждом импорте
+import importlib
+if 'model' in globals():
+    importlib.reload(sys.modules[__name__])
 
-MODEL = joblib.load(MODEL_PATH)
+model = joblib.load(model_path)
+vectorizer = joblib.load(vectorizer_path)
 
-
-def predict_message(text: str):
-    df = pd.DataFrame([{"content": text}])
-    feats = extract_features(df)
-    proba = MODEL.predict_proba(feats)[0]
-    label = MODEL.classes_[proba.argmax()]
-    confidence = float(max(proba))
+def predict_message(text):
+    """Predict if message is phishing or safe"""
+    df_test = pd.DataFrame({'content': [text]})
+    X_test = extract_features(df_test, vectorizer=vectorizer)
+    
+    label = model.predict(X_test)[0]
+    proba = model.predict_proba(X_test)[0]
+    confidence = max(proba)
+    
     return label, confidence
 
-
 if __name__ == "__main__":
-    print(predict_message("hello world"))
+    test_messages = [
+        "Привет, как дела?",
+        "Нужна помощь со статьей",
+        "Срочно верифицируйте аккаунт по ссылке!",
+        "Ваш аккаунт заблокирован. Нажмите здесь!"
+    ]
+    
+    for msg in test_messages:
+        label, conf = predict_message(msg)
+        symbol = "✓" if (label == "safe" and ("дела" in msg or "помощь" in msg)) or (label == "phish" and ("Срочно" in msg or "заблокирован" in msg)) else "✗"
+        print(f"{symbol} Text: {msg}")
+        print(f"   Prediction: {label}, Confidence: {conf:.4f}\n")

@@ -1,24 +1,25 @@
-import pandas as pd
-from xgboost import XGBClassifier
-from src.feature_engineering import extract_features
+import os
+import joblib
+from pathlib import Path
+from .feature_engineering import extract_features
 
-# Создаем и обучаем модель на MVP данных
-# В реальном проекте лучше загружать обученную модель через joblib
-model = XGBClassifier(
-    n_estimators=50,
-    max_depth=3,
-    use_label_encoder=False,
-    eval_metric='logloss'
-)
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+MODEL_PATH = PROJECT_ROOT / "models" / "mvp_model.pkl"
+VECTORIZER_PATH = PROJECT_ROOT / "models" / "vectorizer.pkl"
 
-def train_model(df: pd.DataFrame):
-    X = extract_features(df)
-    y = df['label']
-    model.fit(X, y)
+if not MODEL_PATH.exists():
+    raise FileNotFoundError(f"Model not found: {MODEL_PATH}")
+if not VECTORIZER_PATH.exists():
+    raise FileNotFoundError(f"Vectorizer not found: {VECTORIZER_PATH}")
 
-def predict_risk(model, df: pd.DataFrame):
-    X = extract_features(df)
-    preds = model.predict(X)
-    probs = model.predict_proba(X)
-    # Возвращаем первый элемент, если один пример
-    return preds[0], max(probs[0])
+model = joblib.load(str(MODEL_PATH))
+vectorizer = joblib.load(str(VECTORIZER_PATH))
+
+def predict_risk(model, df):
+    """Predict risk for DataFrame"""
+    X = extract_features(df, vectorizer=vectorizer)
+    predictions = model.predict(X)
+    probabilities = model.predict_proba(X)
+    confidence = probabilities.max(axis=1)[0]
+    prediction = "Safe" if predictions[0] == 0 else "Phishing"
+    return prediction, confidence

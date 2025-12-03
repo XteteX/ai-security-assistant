@@ -1,72 +1,284 @@
 id,input_type,content,label
-1,text,"Ваш аккаунт заблокирован. Срочно перейдите по ссылке и подтвердите данные.",phish
-2,text,"Поздравляем! Вы выиграли iPhone 15. Чтобы получить приз, оплатите доставку по ссылке ниже.",phish
-3,text,"Ваш банковский счёт будет закрыт через 24 часа. Нажмите здесь для обновления реквизитов.",phish
-4,text,"Пополни баланс и получи х2 прямо сейчас. Акция действует 10 минут.",phish
-5,text,"Это техподдержка школы. Срочно пришлите код из SMS, иначе аккаунт удалят.",phish
-6,text,"Ваша карта заблокирована. Чтобы возобновить работу, заполните форму.",phish
-7,text,"Нам необходимо подтвердить вашу личность. Отправьте фото паспорта сюда.",phish
-8,text,"Ваш компьютер заражён. Установите этот файл, чтобы удалить вирус.",phish
-9,text,"Я случайно отправил вам деньги. Можете вернуть? Вот ссылка.",phish
-10,text,"Срочно! Ваш родственник попал в беду. Нужны деньги прямо сейчас. Не звоните никому.",phish
-
-11,text,"Здравствуйте! Напоминаем, что родительское собрание состоится в 17:00 в кабинете 205.",safe
-12,text,"Ваш заказ доставлен. Курьер подъедет в течение 15 минут.",safe
-13,text,"Домашнее задание: решить задачи 1–5 из учебника по алгебре.",safe
-14,text,"Поздравляем! Вы записаны на олимпиаду. Придите в кабинет 301 в пятницу.",safe
-15,text,"Ваши баллы ЕНТ обновлены. Посмотреть можно в личном кабинете.",safe
-16,text,"Уроки перенесены на вторник по причине ремонта.",safe
-17,text,"Учитель загрузил новый материал. Проверьте Google Classroom.",safe
-18,text,"Ваше заявление принято. Ответ будет отправлен в течение 3 дней.",safe
-19,text,"Спасибо за участие в конкурсе школьных проектов.",safe
-20,text,"Платёж успешно выполнен. Детали доступны в приложении банка.",safe
-
-21,url,"http://secure-login-google.com/auth",phish
-22,url,"https://instagram-support-help-center.com",phish
-23,url,"http://bank-kazakhstan-verify.info",phish
-24,url,"https://giveaway-iphone15-free.net",phish
-25,url,"http://steam-free-skins.ru/login",phish
-26,url,"https://facebook.recovery-id-284892.com",phish
-27,url,"http://alfa-bank.support-verification.net",phish
-28,url,"https://whatsapp-safety-check.info",phish
-29,url,"http://kaspi-kabinet.kz.login-secure.net",phish
-30,url,"http://paypal-confirmation-account.org",phish
-31,url,"https://epayment-kz-security-check.info",phish
-32,url,"http://school-edu-security-check.net",phish
-33,url,"http://bonus30000.kz-promo-gift.com",phish
-34,url,"https://emergency-help-family.org",phish
-35,url,"http://roblox-free-robux-generator.ru",phish
-
-36,url,"https://www.google.com",safe
-37,url,"https://kaspi.kz",safe
-38,url,"https://edu.kz",safe
-39,url,"https://classroom.google.com",safe
-40,url,"https://www.instagram.com",safe
-41,url,"https://drive.google.com",safe
-42,url,"https://youtube.com",safe
-43,url,"https://steamcommunity.com",safe
-44,url,"https://pay.kaspi.kz",safe
-45,url,"https://mail.google.com",safe
-46,url,"https://gov.kz",safe
-47,url,"https://whatsapp.com",safe
-48,url,"https://khanacademy.org",safe
-49,url,"https://epay.kkb.kz",safe
-50,url,"https://teams.microsoft.com",safe
-
-51,dialog,"— Привет, это я, у меня новый номер. — А? — Срочно скинь код из SMS, я не могу войти в аккаунт.",phish
-52,dialog,"— Мы из техподдержки Kaspi. — ?? — Чтобы продолжить работу, подтвердите логин по ссылке.",phish
-53,dialog,"— Ты участвуешь в розыгрыше. — В каком? — Просто перейди по ссылке и введи данные.",phish
-54,dialog,"— Твоя посылка не может быть доставлена. — Почему? — Нужно оплатить 300 тг для подтверждения адреса.",phish
-55,dialog,"— Ваш ребёнок нарушил правила школы. — Что? — Откройте вложение, там заявление директора.",phish
-
-56,file,"PDF: School_Fine_Notification.pdf — требует оплатить штраф и содержит фишинговую ссылку.",phish
-57,file,"DOCX: Kaspi_Account_Update.docx — просит ввести логин и пароль.",phish
-58,file,"IMG: fake_kaspi_activation.png — поддельный скрин активации Kaspi Gold.",phish
-59,file,"PDF: Parent_Alert.pdf — якобы уведомление от школы, внутри фишинговая ссылка.",phish
-60,file,"ZIP: Grades_Update.zip — внутри exe-файл, маскирующийся под обновление оценок.",phish
-
-61,file,"PDF: Расписание уроков за неделю.",safe
-62,file,"DOCX: Школьный отчёт по биологии.",safe
-63,file,"PDF: Уведомление о ремонте в школе.",safe
-64,file,"PNG: Фото домашнего задания.",safe
-65,file,"XLSX: Список участников олимпиады.",safe
+1,text,Обнаружена подозрительная активность. Проверьте аккаунт: 128,phish
+2,text,"Техподдержка WhatsApp. Отправьте код из SMS, иначе аккаунт удалят.",phish
+3,text,"Скинь, пожалуйста, конспект.",safe
+4,url,https://kaspi.kz/573,safe
+5,url,https://edu.kz/880,safe
+6,text,"Привет, как дела?",safe
+7,url,https://mail.google.com/339,safe
+8,text,Домашнее задание загружено в Google Classroom.,safe
+9,text,Мы заметили подозрительную активность. Проведите проверку: 129,phish
+10,url,http://verify-secure-login472.info,phish
+11,url,https://mail.google.com/200,safe
+12,url,http://secure-check151.site,phish
+13,text,Обнаружена подозрительная активность. Проверьте аккаунт: 125,phish
+14,url,https://safety-check-Telegram-669.org,phish
+15,text,Обнаружена подозрительная активность. Проверьте аккаунт: 82,phish
+16,url,https://edu.kz/440,safe
+17,url,https://safety-check-Facebook-651.org,phish
+18,url,https://edu.kz/879,safe
+19,url,http://secure-check246.site,phish
+20,url,http://bank-Kazakhstan-confirm-763.net,phish
+21,url,https://mail.google.com/515,safe
+22,text,Ваш платеж успешно выполнен.,safe
+23,text,Обнаружена подозрительная активность. Проверьте аккаунт: 142,phish
+24,url,https://free-AirPods-giveaway-461.org,phish
+25,url,https://promo-gift531.org,phish
+26,url,http://bank-confirm841.ru,phish
+27,url,https://kaspi.kz/495,safe
+28,url,https://promo-gift167.org,phish
+29,text,"Вы выиграли подарок! Чтобы получить, заполните форму: 632",phish
+30,text,"СРОЧНО! Ваш сын в беде. Нужны деньги. Не звоните, переведите сюда!",phish
+31,url,https://mail.google.com/198,safe
+32,url,https://gov.kz/647,safe
+33,url,https://github.com/118,safe
+34,url,http://bank-confirm554.ru,phish
+35,text,Нужна помощь со статьей.,safe
+36,text,Акция! Пополни баланс и получи х3. Осталось 10 минут!,phish
+37,text,Акция! Пополни баланс и получи х3. Осталось 60 минут!,phish
+38,text,"Сессия истекла. Авторизуйтесь заново по ссылке, иначе доступ закроется.",phish
+39,url,https://edu.kz/766,safe
+40,text,Учитель отправил новый материал. Ознакомьтесь пожалуйста.,safe
+41,text,Обновление безопасности WhatsApp. Введите пароль для продолжения работы.,phish
+42,url,https://gov.kz/753,safe
+43,text,Поздравляем! Вы выиграли PlayStation 5. Для получения оплатите доставку 15000 тг.,phish
+44,url,https://gov.kz/754,safe
+45,text,"Вы выиграли подарок! Чтобы получить, заполните форму: 599",phish
+46,url,https://gov.kz/159,safe
+47,url,http://promo-bonus-VK-819.info,phish
+48,text,Срочно! Ваш банковский счёт будет закрыт через 12 часов. Обновите реквизиты.,phish
+49,text,Обнаружена подозрительная активность в аккаунте WhatsApp. Проверьте срочно!,phish
+50,text,"Привет, как дела?",safe
+51,url,https://mail.google.com/335,safe
+52,url,https://promo-gift741.org,phish
+53,url,http://bank-confirm605.ru,phish
+54,url,https://Instagram-verify-account-878.site,phish
+55,url,http://promo-bonus-Instagram-485.info,phish
+56,url,https://Instagram-support-center-444.info,phish
+57,text,Ваша подписка Google истекает. Продлите сейчас со скидкой 50%!,phish
+58,url,http://bank-confirm251.ru,phish
+59,text,Учитель отправил новые материалы.,safe
+60,url,http://Telegram-recovery-id-666.ru,phish
+61,text,Ваш аккаунт Steam заблокирован. Срочно подтвердите данные по ссылке.,phish
+62,url,https://safety-check-WhatsApp-811.org,phish
+63,text,Учитель отправил новые материалы. Ознакомьтесь пожалуйста.,safe
+64,url,https://kaspi.kz/199,safe
+65,url,http://secure-check812.site,phish
+66,text,Вы выбраны участником опроса. Введите номер телефона и получите 50000 тг.,phish
+67,text,Поздравляем! Вы выиграли AirPods. Для получения оплатите доставку 50000 тг.,phish
+68,text,Ваш телефон заражён вирусами! Скачайте антивирус по ссылке.,phish
+69,url,https://update-account312.net,phish
+70,url,https://kaspi.kz/151,safe
+71,url,http://verify-secure-login625.info,phish
+72,text,"Ваши данные устарели. Обновите информацию, иначе аккаунт будет удалён.",phish
+73,text,Поздравляем! Вы выиграли PlayStation 5. Для получения оплатите доставку 50000 тг.,phish
+74,text,Вы выбраны участником опроса. Введите email и получите 25000 тг.,phish
+75,text,Обнаружена подозрительная активность. Проверьте аккаунт: 985,phish
+76,url,https://google.com/706,safe
+77,url,http://verify-secure-login628.info,phish
+78,text,Мы заметили подозрительную активность. Проведите проверку: 40,phish
+79,url,http://secure-check192.site,phish
+80,url,https://wikipedia.org/wiki/814,safe
+81,text,Мы заметили подозрительную активность. Проведите проверку: 241,phish
+82,url,http://secure-check574.site,phish
+83,text,Нужна помощь со статьей,safe
+84,text,"Вы выиграли подарок! Чтобы получить, заполните форму: 77",phish
+85,text,Подтвердите личность. Отправьте селфи с паспортом по ссылке ниже.,phish
+86,text,"Привет, как твои дела?",safe
+87,text,Последнее предупреждение! Оплатите задолженность 5000 тг до сегодня.,phish
+88,url,https://kaspi.kz/108,safe
+89,url,https://update-account764.net,phish
+90,text,Спасибо за поддержку!,safe
+91,url,http://bank-Kazakhstan-confirm-530.net,phish
+92,url,http://secure-login-WhatsApp.com/verify,phish
+93,url,https://mail.google.com/699,safe
+94,url,http://secure-check509.site,phish
+95,text,Ваш аккаунт заблокирован. Нажмите здесь!,phish
+96,text,Мы заметили подозрительную активность. Проведите проверку: 79,phish
+97,url,https://edu.kz/653,safe
+98,url,http://promo-bonus-TikTok-385.info,phish
+99,url,https://kaspi.kz/421,safe
+100,url,https://youtube.com/watch?v=793,safe
+101,url,http://secure-check380.site,phish
+102,url,https://free-iPhone 15-giveaway-830.org,phish
+103,url,http://update-Kaspi-security-709.com,phish
+104,url,https://google.com/140,safe
+105,url,https://edu.kz/652,safe
+106,text,Ваш платёж не прошёл. Повторите попытку через эту форму.,phish
+107,text,"Отлично, спасибо!",safe
+108,url,https://promo-gift495.org,phish
+109,url,https://youtube.com/watch?v=181,safe
+110,text,Обнаружена подозрительная активность. Проверьте аккаунт: 788,phish
+111,url,https://google.com/349,safe
+112,url,https://edu.kz/486,safe
+113,url,https://mail.google.com/406,safe
+114,text,Обнаружена подозрительная активность. Проверьте аккаунт: 875,phish
+115,url,https://wikipedia.org/wiki/511,safe
+116,url,http://bank-Kazakhstan-confirm-942.net,phish
+117,text,Можешь помочь с задачей по математике?,safe
+118,url,https://google.com/205,safe
+119,url,https://edu.kz/278,safe
+120,url,https://google.com/947,safe
+121,text,Ваш заказ доставлен. Курьер прибудет в течение часа.,safe
+122,text,Верифицируйте аккаунт срочно!,phish
+123,text,Какие планы на выходные?,safe
+124,url,https://Telegram-payment-confirm-663.net,phish
+125,text,Помоги мне со статьей,safe
+126,url,https://Steam-verify-account-991.site,phish
+127,url,https://mail.google.com/628,safe
+128,text,Расскажи про проект подробнее.,safe
+129,text,Ваш банковский счёт будет деактивирован. Обновите реквизиты.,phish
+130,url,http://update-Instagram-security-663.com,phish
+131,url,http://update-Google-security-828.com,phish
+132,url,https://mail.google.com/169,safe
+133,url,http://verify-secure-login369.info,phish
+134,url,http://update-TikTok-security-240.com,phish
+135,url,https://update-account128.net,phish
+136,url,https://gov.kz/477,safe
+137,url,https://gov.kz/160,safe
+138,text,"Вы выиграли подарок! Чтобы получить, заполните форму: 391",phish
+139,url,http://bank-Kazakhstan-confirm-617.net,phish
+140,url,https://Steam-payment-confirm-102.net,phish
+141,text,Ваш заказ доставлен. Курьер скоро прибудет.,safe
+142,text,Подтвердите личность. Отправьте фото паспорта по ссылке ниже.,phish
+143,url,http://Google-recovery-id-319.ru,phish
+144,url,https://kaspi.kz/464,safe
+145,url,http://bank-confirm995.ru,phish
+146,url,https://update-account489.net,phish
+147,url,http://secure-check460.site,phish
+148,text,"Вы выиграли подарок! Чтобы получить, заполните форму: 420",phish
+149,text,Ваша подписка Kaspi истекает. Продлите сейчас со скидкой 50%!,phish
+150,url,http://bank-confirm994.ru,phish
+151,text,Обнаружена подозрительная активность. Проверьте аккаунт: 325,phish
+152,text,"Вы выиграли подарок! Чтобы получить, заполните форму: 601",phish
+153,url,https://Kaspi-verify-account-468.site,phish
+154,text,Давай встретимся после уроков.,safe
+155,text,Можешь помочь с работой?,safe
+156,url,http://secure-check722.site,phish
+157,text,Мы заметили подозрительную активность. Проведите проверку: 274,phish
+158,url,https://kaspi.kz/574,safe
+159,url,https://mail.google.com/407,safe
+160,url,http://update-Telegram-security-857.com,phish
+161,url,https://edu.kz/767,safe
+162,text,Спасибо за информацию!,safe
+163,url,https://gov.kz/646,safe
+164,text,Мы заметили подозрительную активность. Проведите проверку: 785,phish
+165,url,https://kaspi.kz/401,safe
+166,url,https://mail.google.com/698,safe
+167,url,https://promo-gift534.org,phish
+168,text,Мы заметили подозрительную активность. Проведите проверку: 871,phish
+169,text,Обнаружена подозрительная активность. Проверьте аккаунт: 753,phish
+170,url,https://promo-gift165.org,phish
+171,text,Подтвердите аккаунт по ссылке!,phish
+172,url,https://mail.google.com/579,safe
+173,url,https://VK-verify-account-830.site,phish
+174,url,http://bank-Ukraine-confirm-240.net,phish
+175,text,"Техподдержка Google. Отправьте код из SMS, иначе аккаунт удалят.",phish
+176,url,https://mail.google.com/197,safe
+177,url,https://update-account248.net,phish
+178,url,https://github.com/617,safe
+179,text,Ваш банковский счёт будет заблокирован. Обновите реквизиты.,phish
+180,url,http://secure-check573.site,phish
+181,text,Увидимся завтра на встрече.,safe
+182,url,https://Instagram-verify-account-795.site,phish
+183,text,Внимание! Ваш заказ не может быть доставлен. Подтвердите адрес здесь.,phish
+184,text,"Напоминаем, что завтра собрание в школе.",safe
+185,url,https://mail.google.com/255,safe
+186,text,"Как дела, всё хорошо?",safe
+187,url,https://TikTok-support-center-240.info,phish
+188,text,Ваш платеж успешно выполнен. Подробности в приложении.,safe
+189,text,"СРОЧНО! Ваш коллега в беде. Нужны деньги. Не звоните, переведите сюда!",phish
+190,url,http://secure-check2467.site,phish
+191,url,https://mail.google.com/168,safe
+192,text,"Вы выиграли подарок! Чтобы получить, заполните форму: 762",phish
+193,text,Ваша карта UnionPay заблокирована. Заполните форму для разблокировки.,phish
+194,text,Как прошёл экзамен?,safe
+195,url,http://secure-login-Mail.ru.com/verify,phish
+196,url,http://secure-check505.site,phish
+197,text,"Вы выиграли подарок! Чтобы получить, заполните форму: 760",phish
+198,url,https://gov.kz/401,safe
+199,url,https://promo-gift284.org,phish
+200,url,https://edu.kz/488,safe
+201,url,https://gov.kz/179,safe
+202,text,Обновление безопасности Google. Введите пароль для продолжения работы.,phish
+203,url,http://bank-confirm608.ru,phish
+204,text,Подтвердите личность. Отправьте скан документа по ссылке ниже.,phish
+205,url,https://safety-check-Mail.ru-692.org,phish
+206,url,https://promo-gift812.org,phish
+207,url,http://secure-check216.site,phish
+208,text,Акция! Пополни баланс и получи х2. Осталось 10 минут!,phish
+209,text,Бонус 5000 тенге на ваш счёт! Активируйте по ссылке в течение часа.,phish
+210,url,https://free-Samsung Galaxy-giveaway-978.org,phish
+211,url,https://gov.kz/680,safe
+212,text,Ваш платеж успешно выполен. Проверьте детали в приложении.,safe
+213,url,https://gov.kz/789,safe
+214,text,Мы заметили подозрительную активность. Проведите проверку: 751,phish
+215,url,https://youtube.com/watch?v=558,safe
+216,url,http://bank-confirm538.ru,phish
+217,text,"Вы выиграли подарок! Чтобы получить, заполните форму: 398",phish
+218,text,"Вы выиграли подарок! Чтобы получить, заполните форму: 628",phish
+219,text,"Вы выиграли подарок! Чтобы получить, заполните форму: 23",phish
+220,text,Срочно! Ваш банковский счёт будет закрыт через 24 часов. Обновите реквизиты.,phish
+221,url,http://secure-check811.site,phish
+222,url,http://promo-bonus-Instagram-576.info,phish
+223,url,http://bank-confirm252.ru,phish
+224,text,Обновление безопасности Facebook. Введите пароль для продолжения работы.,phish
+225,text,Мы заметили подозрительную активность. Проведите проверку: 736,phish
+226,text,Когда будет следующая лекция?,safe
+227,text,Ваш аккаунт Mail.ru заблокирован. Срочно подтвердите данные по ссылке.,phish
+228,url,https://kaspi.kz/456,safe
+229,url,https://kaspi.kz/400,safe
+230,url,https://Kaspi-payment-confirm-874.net,phish
+231,url,https://kaspi.kz/457,safe
+232,url,http://secure-check376.site,phish
+233,text,Мы заметили подозрительную активность. Проведите проверку: 322,phish
+234,url,http://update-Steam-security-739.com,phish
+235,url,https://mail.google.com/627,safe
+236,url,https://kaspi.kz/152,safe
+237,url,https://safety-check-WhatsApp-614.org,phish
+238,text,Последнее предупреждение! Оплатите задолженность 50000 тг до 15.12.2024.,phish
+239,text,Обнаружена подозрительная активность в аккаунте Google. Проверьте срочно!,phish
+240,url,https://edu.kz/448,safe
+241,url,https://mail.google.com/256,safe
+242,text,Обнаружена подозрительная активность. Проверьте аккаунт: 432,phish
+243,text,Напоминаем что завтра состоится школьное собрание.,safe
+244,url,https://free-iPhone 15-giveaway-336.org,phish
+245,url,http://bank-confirm762.ru,phish
+246,text,"Техподдержка Mail.ru. Отправьте код из SMS, иначе аккаунт удалят.",phish
+247,text,Срочно верифицируйте аккаунт по ссылке!,phish
+248,url,http://update-Kaspi-security-769.com,phish
+249,url,http://secure-check126.site,phish
+250,text,Мы заметили подозрительную активность. Проведите проверку: 895,phish
+251,text,Аккаунт заблокирован! Нажмите сюда!,phish
+252,url,https://kaspi.kz/171,safe
+253,url,https://edu.kz/660,safe
+254,url,https://promo-gift491.org,phish
+255,url,https://safety-check-VK-278.org,phish
+256,url,https://gov.kz/685,safe
+257,url,https://kaspi.kz/122,safe
+258,url,https://gov.kz/402,safe
+259,url,http://bank-confirm556.ru,phish
+260,url,https://google.com/348,safe
+261,text,"Срочно оплатите задолженность, иначе доступ будет закрыт.",phish
+262,url,https://safety-check-Instagram-878.org,phish
+263,text,Где можно найти учебные материалы?,safe
+264,text,Отправил тебе файлы в чат.,safe
+265,url,http://secure-check458.site,phish
+266,text,Обнаружена подозрительная активность. Проверьте аккаунт: 754,phish
+267,text,"Срочно оплатите задолженность, иначе доступ будет закрыт!",phish
+268,url,https://update-account891.net,phish
+269,url,http://bank-confirm914.ru,phish
+270,url,https://github.com/597,safe
+271,url,https://WhatsApp-payment-confirm-769.net,phish
+272,url,http://secure-login-Steam.com/verify,phish
+273,url,http://secure-check724.site,phish
+274,url,https://kaspi.kz/200,safe
+275,url,https://kaspi.kz/121,safe
+276,url,https://promo-gift392.org,phish
+277,text,Ваш аккаунт заблокирован. Восстановите доступ!,phish
+278,url,http://update-Facebook-security-615.com,phish
+279,text,Напоминаем что завтра собрание в школе.,safe
+280,url,https://Kaspi-payment-confirm-431.net,phish
+281,text,"Вы выиграли подарок! Чтобы получить, заполните форму: 248",phish
+282,url,http://promo-bonus-Telegram-560.info,phish
+283,url,https://edu.kz/661,safe
