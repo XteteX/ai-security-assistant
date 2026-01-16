@@ -1,6 +1,7 @@
 import joblib
 from pathlib import Path
 from .feature_engineering import extract_features
+from .explain import build_feature_summary, generate_explanation
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 MODEL_PATH = PROJECT_ROOT / "models" / "mvp_model.pkl"
@@ -22,3 +23,12 @@ def predict_risk(input_model, df):
     confidence = probabilities.max(axis=1)[0]
     prediction = "Safe" if predictions[0] == 0 else "Phishing"
     return prediction, confidence
+
+
+def predict_risk_with_explanation(input_model, df):
+    """Predict risk and optionally generate a human-readable explanation."""
+    prediction, confidence = predict_risk(input_model, df)
+    feature_row = extract_features(df, vectorizer=vectorizer).iloc[0].to_dict()
+    feature_summary = build_feature_summary(feature_row)
+    explanation = generate_explanation(feature_summary, prediction, confidence)
+    return prediction, confidence, explanation

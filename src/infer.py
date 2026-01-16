@@ -1,6 +1,7 @@
 import joblib
 import pandas as pd
 from feature_engineering import extract_features
+from explain import build_feature_summary, generate_explanation
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -28,7 +29,10 @@ def predict_message(text):
     proba = model.predict_proba(X_test)[0]
     confidence = max(proba)
     
-    return label, confidence
+    feature_summary = build_feature_summary(X_test.iloc[0].to_dict())
+    explanation = generate_explanation(feature_summary, label, confidence)
+
+    return label, confidence, explanation
 
 if __name__ == "__main__":
     test_messages = [
@@ -39,7 +43,10 @@ if __name__ == "__main__":
     ]
     
     for msg in test_messages:
-        label, conf = predict_message(msg)
+        label, conf, explanation = predict_message(msg)
         symbol = "✓" if (label == "safe" and ("дела" in msg or "помощь" in msg)) or (label == "phish" and ("Срочно" in msg or "заблокирован" in msg)) else "✗"
         print(f"{symbol} Text: {msg}")
         print(f"   Prediction: {label}, Confidence: {conf:.4f}\n")
+        if explanation:
+            print("   Explanation:")
+            print(f"   {explanation}\n")
