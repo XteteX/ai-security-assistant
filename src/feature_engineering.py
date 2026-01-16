@@ -1,6 +1,24 @@
 from urllib.parse import urlparse
+
 import pandas as pd
-from datetime import datetime
+
+PHISHING_WORDS = [
+    'срочно', 'верифи', 'пароль', 'клик', 'подтверд', 'восстан',
+    'блокирова', 'закрыт', 'выигра', 'приз', 'ограничен', 'угроз',
+    'действ', 'немедленно', 'обнови', 'активиру', 'подключи', 'код',
+    'аккаунт', 'заполните', 'форма', 'проверку', 'оплатите', 'доступ',
+    'платеж', 'подтвердите', 'заблокирован', 'проверить', 'ссылка',
+    'здесь', 'нажмите', 'отправьте', 'введите', 'задолженн'
+]
+SAFE_WORDS = [
+    'привет', 'спасибо', 'помощь', 'встреч', 'урок', 'домашн',
+    'учител', 'материал', 'задан', 'экзамен', 'друг', 'семья'
+]
+SUSPICIOUS_DOMAIN_WORDS = [
+    'verify', 'secure', 'account', 'update', 'confirm', 'login', 'bank', 'payment'
+]
+SUSPICIOUS_TLDS = ['.tk', '.ml', '.ga', '.cf', '.ru', '.info', '.site', '.org', '.net']
+SUSPICIOUS_TLDS_STRICT = ['.tk', '.ml', '.ga', '.cf', '.ru', '.info', '.site']
 
 # =========================
 # URL признаки
@@ -12,22 +30,22 @@ def extract_url_features(url_string):
         domain = parsed.netloc.lower()
 
         suspicious_score = 0
-        if any(word in domain for word in ['verify', 'secure', 'account', 'update', 'confirm', 'login', 'bank', 'payment']):
+        if any(word in domain for word in SUSPICIOUS_DOMAIN_WORDS):
             suspicious_score += 2
-        if any(tld in domain for tld in ['.tk', '.ml', '.ga', '.cf', '.ru', '.info', '.site', '.org', '.net']):
+        if any(tld in domain for tld in SUSPICIOUS_TLDS):
             suspicious_score += 1
         if domain.count('-') >= 2:
             suspicious_score += 1
 
         return {
             'url_suspicious_score': suspicious_score,
-            'url_has_ip': 1 if any(char.isdigit() for char in domain.split('.')) and domain.replace('.','').isdigit() else 0,
-            'url_has_suspicious_tld': 1 if any(tld in domain for tld in ['.tk', '.ml', '.ga', '.cf', '.ru', '.info', '.site']) else 0,
+            'url_has_ip': 1 if domain.replace('.', '').isdigit() else 0,
+            'url_has_suspicious_tld': 1 if any(tld in domain for tld in SUSPICIOUS_TLDS_STRICT) else 0,
             'url_dots_count': domain.count('.'),
             'url_domain_length': len(domain),
             'url_dashes_count': domain.count('-')
         }
-    except:
+    except (AttributeError, ValueError):
         return {
             'url_suspicious_score': 0,
             'url_has_ip': 0,
@@ -52,20 +70,8 @@ def extract_features(df, vectorizer=None):
     df['num_links'] = df['content'].apply(lambda x: x.lower().count('http'))
 
     # Фишинг / безопасные слова
-    phishing_words = [
-        'срочно', 'верифи', 'пароль', 'клик', 'подтверд', 'восстан',
-        'блокирова', 'закрыт', 'выигра', 'приз', 'ограничен', 'угроз',
-        'действ', 'немедленно', 'обнови', 'активиру', 'подключи', 'код',
-        'аккаунт', 'заполните', 'форма', 'проверку', 'оплатите', 'доступ',
-        'платеж', 'подтвердите', 'заблокирован', 'проверить', 'ссылка', 
-        'здесь', 'нажмите', 'отправьте', 'введите', 'задолженн'
-    ]
-    safe_words = [
-        'привет', 'спасибо', 'помощь', 'встреч', 'урок', 'домашн',
-        'учител', 'материал', 'задан', 'экзамен', 'друг', 'семья'
-    ]
-    df['phishing_words'] = df['content'].apply(lambda x: sum(3 for word in phishing_words if word in x.lower()))
-    df['safe_words'] = df['content'].apply(lambda x: sum(2 for word in safe_words if word in x.lower()))
+    df['phishing_words'] = df['content'].apply(lambda x: sum(3 for word in PHISHING_WORDS if word in x.lower()))
+    df['safe_words'] = df['content'].apply(lambda x: sum(2 for word in SAFE_WORDS if word in x.lower()))
     df['uppercase_ratio'] = df['content'].apply(lambda x: sum(1 for c in x if c.isupper()) / len(x) if len(x) > 0 else 0)
     df['exclamation_count'] = df['content'].apply(lambda x: x.count('!'))
     df['email_count'] = df['content'].apply(lambda x: x.lower().count('@'))

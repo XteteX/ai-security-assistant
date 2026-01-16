@@ -1,22 +1,23 @@
-import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
 import joblib
 import pandas as pd
 from feature_engineering import extract_features
+from pathlib import Path
 
-base_dir = r"C:\Users\Марлен\Documents\ai-security-assistant"
-model_path = os.path.join(base_dir, "models", "mvp_model.pkl")
-vectorizer_path = os.path.join(base_dir, "models", "vectorizer.pkl")
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+MODEL_PATH = PROJECT_ROOT / "models" / "mvp_model.pkl"
+VECTORIZER_PATH = PROJECT_ROOT / "models" / "vectorizer.pkl"
 
-# ПРИНУДИТЕЛЬНАЯ ПЕРЕЗАГРУЗКА при каждом импорте
-import importlib
-if 'model' in globals():
-    importlib.reload(sys.modules[__name__])
+def load_artifacts():
+    """Load model artifacts from disk."""
+    if not MODEL_PATH.exists():
+        raise FileNotFoundError(f"Model not found: {MODEL_PATH}")
+    if not VECTORIZER_PATH.exists():
+        raise FileNotFoundError(f"Vectorizer not found: {VECTORIZER_PATH}")
+    model = joblib.load(str(MODEL_PATH))
+    vectorizer = joblib.load(str(VECTORIZER_PATH))
+    return model, vectorizer
 
-model = joblib.load(model_path)
-vectorizer = joblib.load(vectorizer_path)
+model, vectorizer = load_artifacts()
 
 def predict_message(text):
     """Predict if message is phishing or safe"""

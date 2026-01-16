@@ -1,7 +1,3 @@
-import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
@@ -31,19 +27,20 @@ df = pd.read_csv(data_path, encoding='utf-8')
 print(f"✓ Loaded {len(df)} records")
 print(f"Class distribution:\n{df['label'].value_counts()}\n")
 
+X_train_raw, X_test_raw, y_train, y_test = train_test_split(
+    df[['content']], df['label'], test_size=0.2, random_state=42, stratify=df['label']
+)
+
 vectorizer = TfidfVectorizer(max_features=100, ngram_range=(1, 2))
-vectorizer.fit(df['content'])
+vectorizer.fit(X_train_raw['content'])
 print(f"✓ Vocabulary size: {len(vectorizer.vocabulary_)}\n")
 
-X = extract_features(df, vectorizer=vectorizer)
-y = df['label']
+X_train = extract_features(X_train_raw, vectorizer=vectorizer)
+X_test = extract_features(X_test_raw, vectorizer=vectorizer)
 
-print(f"✓ Feature shape: {X.shape}")
-print(f"✓ Features: {list(X.columns)}\n")
-
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42, stratify=y
-)
+print(f"✓ Train feature shape: {X_train.shape}")
+print(f"✓ Test feature shape: {X_test.shape}")
+print(f"✓ Features: {list(X_train.columns)}\n")
 
 # ИСПОЛЬЗУЕМ Random Forest
 model = RandomForestClassifier(
@@ -62,7 +59,7 @@ print("\n📊 Classification Report:")
 print(classification_report(y_test, y_pred))
 
 feature_importance = pd.DataFrame({
-    'feature': X.columns,
+    'feature': X_train.columns,
     'importance': model.feature_importances_
 }).sort_values('importance', ascending=False)
 

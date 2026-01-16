@@ -1,4 +1,3 @@
-import os
 import joblib
 from pathlib import Path
 from .feature_engineering import extract_features
@@ -15,11 +14,11 @@ if not VECTORIZER_PATH.exists():
 model = joblib.load(str(MODEL_PATH))
 vectorizer = joblib.load(str(VECTORIZER_PATH))
 
-def predict_risk(model, df):
+def predict_risk(input_model, df):
     """Predict risk for DataFrame"""
     X = extract_features(df, vectorizer=vectorizer)
-    predictions = model.predict(X)
-    probabilities = model.predict_proba(X)
+    predictions = input_model.predict(X)
+    probabilities = input_model.predict_proba(X)
     confidence = probabilities.max(axis=1)[0]
     prediction = "Safe" if predictions[0] == 0 else "Phishing"
     return prediction, confidence
