@@ -17,6 +17,7 @@ import pandas as pd
 import sys
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 from feature_engineering import extract_features
+from gemini_explainer import generate_explanation
 
 # ЗАГРУЖАЕМ МОДЕЛЬ НАПРЯМУЮ В БОТЕ
 base_dir = PROJECT_ROOT
@@ -61,7 +62,8 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "🔍 Как использовать:\n\n"
         "1. Отправь мне любое сообщение или ссылку\n"
         "2. Я проверю, фишинг это или нет\n"
-        "3. Увидишь результат с уровнем уверенности\n\n"
+        "3. Увидишь результат с уровнем уверенности\n"
+        "4. Если подключен Gemini API — получишь краткое объяснение\n\n"
         "Примеры:\n"
         "✅ 'Привет, как дела?'\n"
         "❌ 'Срочно подтвердите аккаунт!'"
@@ -84,12 +86,17 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             emoji = "✅"
             result = "БЕЗОПАСНО"
             color = "🟢"
+
+        explanation = generate_explanation(text, label, confidence)
         
         response = (
             f"{emoji} **{result}** {color}\n\n"
             f"📊 Уверенность: {confidence*100:.1f}%\n\n"
             f"💬 Сообщение:\n`{text[:200]}{'...' if len(text) > 200 else ''}`"
         )
+
+        if explanation:
+            response += f"\n\n🧠 Объяснение:\n{explanation}"
         
         await update.message.reply_text(response, parse_mode='Markdown')
         

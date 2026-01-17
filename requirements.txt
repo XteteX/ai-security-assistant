@@ -6,3 +6,4 @@ torch
 transformers
 flask   # если понадобится API
 python-dotenv
+google-generativeai
