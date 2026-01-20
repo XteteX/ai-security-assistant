@@ -28,7 +28,6 @@ def generate_explanation(text: str, label: str, confidence: float) -> str | None
 
     try:
         client = genai.Client(api_key=api_key)
-
         prompt = _build_prompt(text, label, confidence)
 
         response = client.models.generate_content(
@@ -39,6 +38,7 @@ def generate_explanation(text: str, label: str, confidence: float) -> str | None
         result = (response.text or "").strip()
         return result if result else None
 
-    except Exception:
-        # КРИТИЧНО: бот не должен падать из-за AI
+    except Exception as e:
+        # ВАЖНО: логируем причину, но не ломаем бота
+        print("Gemini explanation failed:", repr(e))
         return None
